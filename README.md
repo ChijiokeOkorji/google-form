@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Google Form Field
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a form field built according to Google's Material Design specifications.
 
 ## Available Scripts
 

@@ -1,0 +1,61 @@
+@use '../../main.scss';
+@use 'sass:color';
+
+@mixin state-overlay($color, $color-mono, $percentage) {
+  @if ($color-mono == #fff) {
+    background-color: color.mix($color, $color-mono, $percentage);
+  } @else {
+    background-color: color.mix($color, $color-mono, ((2 * $percentage) - 100%));
+  }
+}
+
+.button {
+  min-width: 4rem;
+  height: 2.25rem;
+  margin: 1rem 1rem;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: main.$main-color;
+  color: main.color-emphasis(main.$background-color);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.078125rem;
+  box-shadow: 0 0.0625rem 0.3125rem #0000001f, 0 0.125rem 0.125rem #00000024, 0 0.1875rem 0.0625rem #00000033;
+  border: 1px solid #ffffff00;
+  border-radius: 0.25rem;
+  transition: box-shadow 0.15s ease 0s;
+  outline: none;
+  cursor: pointer;
+
+  .label {
+    margin: 0 0.5rem;
+  }
+
+  &:hover {
+    @include state-overlay(main.$main-color, #ffffff00, 96%);
+  }
+
+  &:focus {
+    @include state-overlay(main.$main-color, #ffffff00, 90%);
+    box-shadow: 0 0.0625rem 0.875rem #0000001f, 0 0.3125rem 0.5rem #00000024, 0 0.1875rem 0.3125rem #00000033;
+    border-color: main.$main-color;
+    transition-duration: 0.1s;
+  }
+
+  &:active {
+    @include state-overlay(main.$main-color, #ffffff00, 84%);
+    box-shadow: 0 0.1875rem 0.875rem #0000001f, 0 0.5rem 0.625rem #00000024, 0 0.3125rem 0.3125rem #00000033;
+    border-color: main.$main-color;
+    transition-duration: 0.2s;
+  }
+
+  &:disabled {
+    background-color: main.color-emphasis(main.$main-color, disabled);
+    color: main.color-emphasis(#000000, disabled);
+    border-color: #ffffff00;
+    box-shadow: none;
+    cursor: default;
+  }
+}

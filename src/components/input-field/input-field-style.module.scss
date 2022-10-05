@@ -1,0 +1,92 @@
+@use '../../main';
+
+.inputBox {
+  width: max(17.5rem, 50%);
+  margin: 0.5rem;
+  display: flex;
+  flex-direction: column;
+
+  &::before {
+    content: attr(data-placeHolder);
+    padding: 0.25rem 1rem;
+    background-color: main.$background-color;
+    color: main.color-emphasis(main.$main-color, medium-emphasis);
+    border-radius: 0.25rem;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: scale(1) translate(0, 0.75rem);
+    transition: 0.15s linear;
+    transition-property: transform, background-color, font-size, padding;
+  }
+
+  &.focus::before {
+    transform: translate(0.75rem, -0.3125rem);
+    font-size: 0.75rem;
+    padding: 0 0.25rem;
+    letter-spacing: 0.025rem;
+    color: main.$main-color;
+    z-index: 1;
+  }
+
+  .input {
+    height: 3rem;
+    padding: 0 0.75rem 0 1rem;
+    background-color: #ffffff00;
+    color: main.$main-color;
+    border: 0.0625rem solid main.$border-stroke;
+    border-radius: 0.25rem;
+    box-shadow: none;
+    outline: none;
+  
+    &:focus {
+      padding: 0 0.6875rem 0 0.9375rem;
+      border: 0.125rem solid main.$main-color;
+    }
+  }
+
+  &.error {
+    .input {
+      padding: 0 0.6875rem 0 0.9375rem;
+      border: 0.125rem solid main.$error-color;
+    }
+
+    &.focus::before {
+      color: main.$error-color;
+    }
+  }
+
+  .iconArea {
+    height: 2.75rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: {
+      right: 0.25rem;
+      top: 0.125rem;
+    };
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: main.$background-color;
+    color: main.$main-color;
+    border-radius: 0.125rem;
+    cursor: default;
+  
+    & * {
+      margin: 0 0.625rem 0 0.75rem;
+      cursor: pointer;
+    }
+  }
+
+  .errorMessage {
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.025rem;
+    color: main.$error-color;
+    margin: {
+      left: 1rem;
+      top: 0.25rem;
+    };
+  }
+}

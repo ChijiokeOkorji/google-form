@@ -1,0 +1,87 @@
+@charset "UTF-8";
+
+@use 'sass:color';
+
+$main-color: #2a3362;
+$background-color: #ffffff;
+$error-color: #b00020;
+$border-stroke: #7b7b7b44;
+$sans-serif-font-family: 'Roboto', sans-serif;
+
+// To set various color opacities
+@function color-emphasis($var-color: #000000, $emphasis: high-emphasis) {
+  @if ($emphasis == medium-emphasis) {
+    @return color.adjust($var-color, $alpha: -0.4);
+  } @else if ($emphasis == disabled) {
+    @return color.adjust($var-color, $saturation: -100%, $alpha: -0.6);
+  } @else if ($var-color == #ffffff) {
+    @return $var-color;
+  }
+
+  @return color.adjust($var-color, $alpha: -0.1);
+}
+
+// Import Roboto font
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+// Import Font Awesome for icons
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css');
+
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  box-sizing: inherit;
+}
+
+body {
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.03125rem;
+  line-height: 1;
+  color: color-emphasis(black);
+}
+
+#root {
+  width: 100%;
+  max-width: 100vw;
+  min-height: 100vh;
+  font-family: $sans-serif-font-family;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(auto-fit, minmax(0, auto));
+  gap: 0;
+  overflow: hidden auto;
+
+  // Grid responsive layout for the root element
+  @media screen and (min-width: 40rem) {
+    & {
+      grid-template-columns: repeat(8, 1fr);
+    }
+  }
+  
+  @media screen and (min-width: 60rem) {
+    & {
+      grid-template-columns: repeat(12, 1fr);
+    }
+  }
+  
+  @media screen and (min-width: 80rem) {
+    & {
+      grid-template-columns: repeat(16, 1fr);
+    }
+  }
+  
+  @media screen and (min-width: 100rem) {
+    & {
+      grid-template-columns: repeat(20, 1fr);
+    }
+  }
+}

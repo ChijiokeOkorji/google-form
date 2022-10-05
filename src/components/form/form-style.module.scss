@@ -1,0 +1,19 @@
+@use '../../main.scss';
+
+.form {
+  width: 100%;
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: main.$background-color;
+  border-radius: 1rem;
+
+  .title {
+    margin: 2rem 0;
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-align: center;
+  }
+}
